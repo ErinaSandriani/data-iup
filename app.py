@@ -4,42 +4,33 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 # Load data
-data = pd.read_csv("Dataset_Kelompok_16_Mini_Tim_B.csv")
+df = pd.read_csv("Dataset_Kelompok_16_Mini_Tim_B.csv")
 
-# Judul halaman
-st.title("Visualisasi Data Program IUP PTN Indonesia")
+# Judul
+st.title("Visualisasi Interaktif Data Program IUP")
 
-# 1. Distribusi Daya Tampung per PTN
-st.header("Distribusi Daya Tampung Program IUP per PTN")
-plt.figure(figsize=(10, 6))
-sns.barplot(x="Universitas", y="Daya Tampung", data=data, estimator=sum, ci=None)
-plt.xticks(rotation=45)
-st.pyplot(plt)
+# Pilihan interaktif untuk jurusan dan universitas
+selected_univ = st.selectbox("Pilih Universitas:", df["Universitas"].unique())
+selected_jurusan = st.selectbox("Pilih Jurusan:", df[df["Universitas"] == selected_univ]["Jurusan/Program Studi"].unique())
 
-# 2. Perbandingan Biaya UKT Antar Jurusan di Setiap PTN
-st.header("Perbandingan Biaya UKT Antar Jurusan di Setiap PTN")
-plt.figure(figsize=(10, 6))
-sns.boxplot(x="Universitas", y="Biaya UKT", data=data)
-plt.xticks(rotation=45)
-st.pyplot(plt)
+# Filter data
+filtered_df = df[(df["Universitas"] == selected_univ) & (df["Jurusan/Program Studi"] == selected_jurusan)]
 
-# 3. Rasio Biaya UKT terhadap Daya Tampung per PTN
-st.header("Rasio Biaya UKT terhadap Daya Tampung per PTN")
-data["Rasio UKT/Daya Tampung"] = data["Biaya UKT"] / data["Daya Tampung"]
-rasio_df = data.groupby("Universitas")["Rasio UKT/Daya Tampung"].mean().reset_index()
-plt.figure(figsize=(10, 6))
-sns.barplot(x="Universitas", y="Rasio UKT/Daya Tampung", data=rasio_df)
-plt.xticks(rotation=45)
-st.pyplot(plt)
+# Tampilkan hasil
+st.subheader("Data Terpilih")
+st.write(filtered_df)
 
-# 4. Rata-rata Biaya UKT per PTN
-st.header("Rata-rata Biaya UKT per PTN")
-ukt_avg = data.groupby("Universitas")["Biaya UKT"].mean().reset_index()
-plt.figure(figsize=(10, 6))
-sns.barplot(x="Universitas", y="Biaya UKT", data=ukt_avg)
-plt.xticks(rotation=45)
-st.pyplot(plt)
+# Visualisasi
+if not filtered_df.empty:
+    st.subheader("Visualisasi Perbandingan Daya Tampung dan Biaya UKT")
+    fig, ax = plt.subplots()
+    sns.barplot(data=filtered_df, x="Jurusan/Program Studi", y="Daya Tampung", ax=ax)
+    ax.set_title(f"Daya Tampung untuk {selected_jurusan} di {selected_univ}")
+    st.pyplot(fig)
 
-# Footer
-st.markdown("---")
-st.markdown("Dibuat oleh Erina Sandriani - Magang Vinix Seven Aurum 2025")
+    fig2, ax2 = plt.subplots()
+    sns.barplot(data=filtered_df, x="Jurusan/Program Studi", y="Biaya UKT", ax=ax2)
+    ax2.set_title(f"Biaya UKT untuk {selected_jurusan} di {selected_univ}")
+    st.pyplot(fig2)
+else:
+    st.write("Tidak ada data untuk kombinasi tersebut.")
