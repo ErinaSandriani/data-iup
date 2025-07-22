@@ -1,44 +1,45 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
+import matplotlib.pyplot as plt
 
-# Judul Aplikasi
-st.title("Analisis Data Program IUP PTN Indonesia")
-st.subheader("Dataset: Survei Program IUP oleh Kelompok 16 Mini Tim B")
+# Load data
+data = pd.read_csv("Dataset_Kelompok_16_Mini_Tim_B.csv")
 
-# Load Dataset
-df = pd.read_csv("Dataset_Kelompok_16_Mini_Tim_B.csv")
+# Judul halaman
+st.title("Visualisasi Data Program IUP PTN Indonesia")
 
-# Tampilkan Data Mentah
-if st.checkbox("Tampilkan Data Mentah"):
-    st.write(df)
+# 1. Distribusi Daya Tampung per PTN
+st.header("Distribusi Daya Tampung Program IUP per PTN")
+plt.figure(figsize=(10, 6))
+sns.barplot(x="Universitas", y="Daya Tampung", data=data, estimator=sum, ci=None)
+plt.xticks(rotation=45)
+st.pyplot(plt)
 
-# Informasi Dataset
-st.markdown("### Ringkasan Data")
-st.write(df.describe(include='all'))
+# 2. Perbandingan Biaya UKT Antar Jurusan di Setiap PTN
+st.header("Perbandingan Biaya UKT Antar Jurusan di Setiap PTN")
+plt.figure(figsize=(10, 6))
+sns.boxplot(x="Universitas", y="Biaya UKT", data=data)
+plt.xticks(rotation=45)
+st.pyplot(plt)
 
-# Data Cleaning sederhana: Hapus duplikasi dan baris kosong
-df_cleaned = df.drop_duplicates().dropna()
+# 3. Rasio Biaya UKT terhadap Daya Tampung per PTN
+st.header("Rasio Biaya UKT terhadap Daya Tampung per PTN")
+data["Rasio UKT/Daya Tampung"] = data["Biaya UKT"] / data["Daya Tampung"]
+rasio_df = data.groupby("Universitas")["Rasio UKT/Daya Tampung"].mean().reset_index()
+plt.figure(figsize=(10, 6))
+sns.barplot(x="Universitas", y="Rasio UKT/Daya Tampung", data=rasio_df)
+plt.xticks(rotation=45)
+st.pyplot(plt)
 
-# Visualisasi: Pie Chart Jumlah Responden per Kampus
-if 'Kampus' in df_cleaned.columns:
-    st.markdown("### Distribusi Responden per Kampus")
-    kampus_counts = df_cleaned['Kampus'].value_counts()
-    fig1, ax1 = plt.subplots()
-    ax1.pie(kampus_counts, labels=kampus_counts.index, autopct='%1.1f%%', startangle=90)
-    ax1.axis('equal')
-    st.pyplot(fig1)
-
-# Visualisasi: Barplot jika ada kolom Biaya
-if 'Biaya' in df_cleaned.columns and 'Kampus' in df_cleaned.columns:
-    st.markdown("### Rata-rata Biaya IUP per Kampus")
-    df_cleaned['Biaya'] = pd.to_numeric(df_cleaned['Biaya'], errors='coerce')
-    biaya_mean = df_cleaned.groupby('Kampus')['Biaya'].mean().sort_values()
-    fig2, ax2 = plt.subplots()
-    sns.barplot(x=biaya_mean.values, y=biaya_mean.index, ax=ax2)
-    ax2.set_xlabel("Biaya (Rata-rata)")
-    st.pyplot(fig2)
+# 4. Rata-rata Biaya UKT per PTN
+st.header("Rata-rata Biaya UKT per PTN")
+ukt_avg = data.groupby("Universitas")["Biaya UKT"].mean().reset_index()
+plt.figure(figsize=(10, 6))
+sns.barplot(x="Universitas", y="Biaya UKT", data=ukt_avg)
+plt.xticks(rotation=45)
+st.pyplot(plt)
 
 # Footer
-st.caption("Dibuat oleh Erina Sandriani - Magang Vinix Seven Aurum 2025")
+st.markdown("---")
+st.markdown("Dibuat oleh Erina Sandriani - Magang Vinix Seven Aurum 2025")
