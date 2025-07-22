@@ -1,82 +1,75 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-# Judul Aplikasi
-st.set_page_config(page_title="Visualisasi Interaktif Data Program IUP", layout="wide")
+# Load Data
+data = pd.read_csv('Dataset_Kelompok_16_Mini_Tim_B.csv')
+
+# Title
 st.title("Visualisasi Interaktif Data Program IUP")
 
-# Load data
-df = pd.read_csv("Dataset_Kelompok_16_Mini_Tim_B.csv")
-
-# Menampilkan kolom untuk debug jika diperlukan
-# st.write("Kolom dalam dataset:", df.columns.tolist())
-
-# Perbaikan: nama kolom harus persis sesuai yang ada di CSV
-df = df.dropna(subset=["Universitas", "Jurusan/Program Studi", "Biaya UKT", "Daya Tampung"])
-
-# Sidebar filter
+# Sidebar Filter
 st.sidebar.header("Filter Data")
-selected_univ = st.sidebar.selectbox("Pilih Universitas:", df["Universitas"].unique())
-filtered_df = df[df["Universitas"] == selected_univ]
+selected_univ = st.sidebar.selectbox("Pilih Universitas:", sorted(data['Universitas'].unique()))
+filtered_data_jurusan = data[data['Universitas'] == selected_univ]
+selected_jurusan = st.sidebar.selectbox("Pilih Jurusan:", sorted(filtered_data_jurusan['Jurusan/Program Studi'].unique()))
 
-selected_jurusan = st.sidebar.selectbox("Pilih Jurusan:", filtered_df["Jurusan/Program Studi"].unique())
-final_df = filtered_df[filtered_df["Jurusan/Program Studi"] == selected_jurusan]
+# Filtered Row
+filtered_row = data[
+    (data['Universitas'] == selected_univ) &
+    (data['Jurusan/Program Studi'] == selected_jurusan)
+]
 
-# Tampilkan data yang terpilih
+# Show Data Terpilih
 st.subheader("Data Terpilih")
-st.dataframe(final_df)
+st.dataframe(filtered_row)
 
-# Bar chart semua universitas (dengan highlight yang dipilih)
+# Visualisasi Bar: Distribusi Daya Tampung per Universitas (dengan Highlight)
 st.subheader("Distribusi Daya Tampung per Universitas")
+highlight = selected_univ
+colors = ['#FFA07A' if u == highlight else '#D3D3D3' for u in data['Universitas']]
+fig1, ax1 = plt.subplots()
+sns.barplot(data=data, x="Universitas", y="Daya Tampung", palette=colors, ax=ax1)
+ax1.set_title("Daya Tampung Program IUP per Universitas")
+plt.xticks(rotation=45)
+st.pyplot(fig1)
 
-highlight_df = df.copy()
-highlight_df["Highlight"] = highlight_df.apply(
-    lambda row: "Highlight" if (row["Universitas"] == selected_univ and row["Jurusan/Program Studi"] == selected_jurusan) else "Lainnya",
-    axis=1
-)
+# Visualisasi Biaya UKT per Jurusan (Highlight)
+st.subheader("Distribusi Biaya UKT per Jurusan di " + selected_univ)
+subset = data[data['Universitas'] == selected_univ]
+colors2 = ['#90EE90' if j == selected_jurusan else '#D3D3D3' for j in subset['Jurusan/Program Studi']]
+fig2, ax2 = plt.subplots()
+sns.barplot(data=subset, x='Jurusan/Program Studi', y='Biaya UKT', palette=colors2, ax=ax2)
+plt.xticks(rotation=90)
+st.pyplot(fig2)
 
-fig1 = px.bar(
-    highlight_df,
-    x="Universitas",
-    y="Daya Tampung",
-    color="Highlight",
-    title="Daya Tampung Program IUP per Universitas",
-    color_discrete_map={"Highlight": "#EF553B", "Lainnya": "lightgray"}
-)
-st.plotly_chart(fig1, use_container_width=True)
+# Pie Chart Biaya UKT
+st.subheader("Visualisasi Pie Chart Biaya UKT")
+fig3, ax3 = plt.subplots()
+ax3.pie(filtered_row['Biaya UKT'], labels=filtered_row['Jurusan/Program Studi'], autopct='%1.1f%%')
+ax3.set_title(f"Biaya UKT {selected_jurusan} di {selected_univ}")
+st.pyplot(fig3)
 
-# Bar chart semua universitas untuk Biaya UKT
-st.subheader("Distribusi Biaya UKT per Universitas")
-
-fig2 = px.bar(
-    highlight_df,
-    x="Universitas",
-    y="Biaya UKT",
-    color="Highlight",
-    title="Biaya UKT Program IUP per Universitas",
-    color_discrete_map={"Highlight": "#00CC96", "Lainnya": "lightgray"}
-)
-st.plotly_chart(fig2, use_container_width=True)
-
-# Visualisasi pie chart dan bar chart per data terpilih
-st.subheader("Visualisasi Daya Tampung dan Biaya UKT")
-
+# Statistik Umum
+st.subheader("Statistik Umum")
 col1, col2 = st.columns(2)
-
 with col1:
-    fig3 = px.pie(final_df, names="Jurusan/Program Studi", values="Daya Tampung",
-                  title=f"Pie Chart Daya Tampung untuk {selected_jurusan} di {selected_univ}")
-    st.plotly_chart(fig3, use_container_width=True)
-
+    st.metric("Rata-rata Biaya UKT", f"Rp{data['Biaya UKT'].mean():,.0f}")
+    st.metric("Biaya UKT Tertinggi", f"Rp{data['Biaya UKT'].max():,.0f}")
+    st.metric("Biaya UKT Terendah", f"Rp{data['Biaya UKT'].min():,.0f}")
 with col2:
-    fig4 = px.bar(final_df, x="Jurusan/Program Studi", y="Biaya UKT",
-                  title=f"Bar Chart Biaya UKT untuk {selected_jurusan} di {selected_univ}",
-                  color_discrete_sequence=["#636EFA"])
-    st.plotly_chart(fig4, use_container_width=True)
+    st.metric("Rata-rata Daya Tampung", f"{data['Daya Tampung'].mean():.1f}")
+    st.metric("Daya Tampung Tertinggi", f"{data['Daya Tampung'].max()}")
+    st.metric("Daya Tampung Terendah", f"{data['Daya Tampung'].min()}")
+
+# Rekomendasi Jurusan berdasarkan Budget
+st.subheader("Rekomendasi Jurusan Berdasarkan Budget")
+budget = st.slider("Masukkan Budget UKT Anda (Rp)", min_value=int(data['Biaya UKT'].min()), max_value=int(data['Biaya UKT'].max()), value=int(data['Biaya UKT'].mean()))
+rekomendasi = data[data['Biaya UKT'] <= budget].sort_values(by='Biaya UKT')
+st.write(f"Jurusan dengan Biaya UKT di bawah Rp{budget:,}:")
+st.dataframe(rekomendasi[['Universitas', 'Jurusan/Program Studi', 'Biaya UKT']])
 
 # Footer
-st.markdown(
-    "<br><hr><center>Dibuat oleh Erina Sandriani - Magang Vinix Seven Aurum 2025</center>",
-    unsafe_allow_html=True
-)
+st.markdown("---")
+st.caption("Dibuat oleh Erina Sandriani – Magang Vinix Seven Aurum 2025")
