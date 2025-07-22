@@ -1,0 +1,137 @@
+No.,Universitas,Jurusan/Program Studi,Daya Tampung,Biaya UKT
+1,Universitas Airlangga,Kedokteran Gigi,50,27500000
+2,Universitas Airlangga,Kedokteran Hewan,40,15000000
+3,Universitas Airlangga,Hukum,30,25000000
+4,Universitas Airlangga,Farmasi,10,22000000
+5,Universitas Airlangga,Akuntansi,10,20000000
+6,Universitas Airlangga,Manajemen,10,20000000
+7,Universitas Airlangga,Ekonomi Islam,5,20000000
+8,Universitas Airlangga,Ekonomi Pembangunan,5,15000000
+9,Universitas Airlangga,Psikologi,30,20000000
+10,Universitas Airlangga,Kedokteran,50,30000000
+11,Universitas Brawijaya,Ilmu Hukum,30,20948500
+12,Universitas Brawijaya,Akuntansi,30,15000000
+13,Universitas Brawijaya,"Ekonomi, Keuangan dan Perbankan",30,15000000
+14,Universitas Brawijaya,Manajemen,30,15000000
+15,Universitas Brawijaya,Administrasi Pendidikan,20,10400000
+16,Universitas Brawijaya,Administrasi Publik,30,14080500
+17,Universitas Brawijaya,Ilmu Perpustakaan,20,10400000
+18,Universitas Brawijaya,Pariwisata,20,14080500
+19,Universitas Brawijaya,Perpajakan,20,14080500
+20,Universitas Brawijaya,Administrasi Bisnis,30,14080500
+21,Universitas Brawijaya,Peternakan,40,14000000
+22,Universitas Brawijaya,Sastra Inggris,20,9533550
+23,Universitas Brawijaya,Sastra Jepang,20,9533550
+24,Universitas Brawijaya,Sistem Informasi,40,14600000
+25,Universitas Brawijaya,Pendidikan Dokter Hewan,40,34000000
+26,Universitas Brawijaya,Teknologi Pangan,30,14719000
+27,Universitas Brawijaya,Bioteknologi,30,14719000
+28,Universitas Brawijaya,Teknologi Industri Pertanian,30,14130000
+29,Universitas Brawijaya,Teknik  Lingkungan,30,14719000
+30,Universitas Brawijaya,Teknologi Bioproses,30,14719000
+31,Universitas Brawijaya,Teknik Sipil,30,21000000
+32,Universitas Brawijaya,Teknik Industri,40,21000000
+33,Universitas Brawijaya,Hubungan Internasional,20,12500000
+34,Universitas Brawijaya,Ilmu Politik,20,12500000
+35,Universitas Brawijaya,Ilmu Komunikasi,20,13500000
+36,Universitas Brawijaya,Kedokteran,35,45000000
+37,Universitas Brawijaya,Agribisnis,20,16245200
+38,Universitas Brawijaya,Agroekoteknologi,20,16245200
+39,Universitas Diponegoro,Manajemen,25,20000000
+40,Universitas Diponegoro,Teknik Kimia,20,20000000
+41,Universitas Diponegoro,Teknik Sipil,20,20000000
+42,Universitas Diponegoro,Ilmu Komunikasi,30,20000000
+43,Universitas Diponegoro,Ilmu Pemerintahan,10,15700000
+44,Universitas Diponegoro,Hukum,42,20000000
+45,Universitas Diponegoro,Akuntansi,25,20000000
+46,Universitas Diponegoro,Ekonomi,25,20000000
+47,Universitas Diponegoro,Teknik Perencanaan Wilayah dan Kota,20,20000000
+48,Universitas Diponegoro,Teknik Industri,20,20000000
+49,Universitas Diponegoro,Administrasi Bisnis,30,18000000
+50,Universitas Diponegoro,Administrasi Publik,10,17300000
+51,Universitas Diponegoro,Sastra Inggris,30,15000000
+52,Universitas Diponegoro,Kedokteran,35,70000000
+53,Universitas Negeri Surabaya,Akuntansi,20,12600000
+54,Universitas Negeri Surabaya,Manajemen,20,12000000
+55,Universitas Negeri Surabaya,Ekonomi Islam,20,12000000
+56,Universitas Negeri Surabaya,Administrasi Publik,20,12600000
+57,Universitas Negeri Surabaya,Ilmu Hukum,20,12000000
+58,Universitas Negeri Surabaya,Administrasi Negara,20,12000000
+59,Universitas Negeri Surabaya,Teknik Elektro,20,12100000
+60,Universitas Negeri Surabaya,Pendidikan Matematika,20,13200000
+61,Universitas Negeri Surabaya,Biologi,20,13200000
+62,Universitas Negeri Surabaya,Manajemen Pendidikan,20,12600000
+63,Universitas Negeri Surabaya,Pendidikan Guru Sekolah Dasar,20,17900000
+64,Universitas Negeri Surabaya,Pendidikan Kepelatihan Olahraga,20,13200000
+65,Universitas Negeri Surabaya,"Pendidikan Jasmani, Kesehatan dan Rekreasi",20,13200000
+66,Universitas Negeri Surabaya,Psikologi,20,12100000
+67,Universitas Negeri Surabaya,Sastra Inggris,20,12000000
+68,Universitas Negeri Surabaya,Pendidikan Bahasa Mandarin,20,11000000
+69,Universitas Gadjah Mada,Biologi,35,28000000
+70,Universitas Gadjah Mada,Akuntansi,50,35000000
+71,Universitas Gadjah Mada,Manajemen,60,35000000
+72,Universitas Gadjah Mada,Ilmu Ekonomi,30,35000000
+73,Universitas Gadjah Mada,Farmasi,20,35000000
+74,Universitas Gadjah Mada,Geografi Ligkungan,20,25000000
+75,Universitas Gadjah Mada,Kedokteran Hewan,30,30000000
+76,Universitas Gadjah Mada,Hukum,80,30000000
+77,Universitas Gadjah Mada,Hubungan Internasional,50,25000000
+78,Universitas Gadjah Mada,Ilmu Komunikasi,50,25000000
+79,Universitas Gadjah Mada,Manajemen dan Kebijakan Publik,50,25000000
+80,Universitas Gadjah Mada,Kedokteran,75,45000000
+81,Universitas Gadjah Mada,Psikologi,40,30000000
+82,Universitas Gadjah Mada,Teknologi Pengelolaan Infrastruktur Sipil,30,28000000
+83,Universitas Gadjah Mada,Statistika,20,25000000
+84,Universitas Gadjah Mada,Elektronika dan Instrumentasi,33,23000000
+85,Universitas Gadjah Mada,Ilmu Komputer,66,23000000
+86,Universitas Gadjah Mada,Kimia,30,25000000
+87,Universitas Gadjah Mada,Matematika,25,20000000
+88,Universitas Gadjah Mada,Ilmu dan Industri Peternakan,40,20000000
+89,Universitas Gadjah Mada,Teknik Biomedis,20,30000000
+90,Universitas Gadjah Mada,Teknik Sipil,50,30000000
+91,Universitas Gadjah Mada,Teknik Mesin,30,30000000
+92,Universitas Gadjah Mada,Teknik Kimia,30,30000000
+93,Universitas Gadjah Mada,Teknik Geodesi,25,30000000
+94,Universitas Gadjah Mada,Teknik  Geologi,30,30000000
+95,Universitas Gadjah Mada,Teknologi  Informasi,40,29300000
+96,Universitas Gadjah Mada,Teknik Industri,30,30000000
+97,Universitas Gadjah Mada,Perencanaan Wilayah dan Kota,25,30000000
+98,Universitas Gadjah Mada,Kedokteran Gigi,20,50000000
+99,Institut Teknologi Sepuluh Nopember,Statistik,20,25000000
+100,Institut Teknologi Sepuluh Nopember,Teknik Mesin,30,25000000
+101,Institut Teknologi Sepuluh Nopember,Teknik Kimia,20,25000000
+102,Institut Teknologi Sepuluh Nopember,Teknik Industri,30,25000000
+103,Institut Teknologi Sepuluh Nopember,Teknik Material,15,25000000
+104,Institut Teknologi Sepuluh Nopember,Teknik Sipil,20,25000000
+105,Institut Teknologi Sepuluh Nopember,Arsitektur,20,25000000
+106,Institut Teknologi Sepuluh Nopember,Teknik Lingkungan,20,25000000
+107,Institut Teknologi Sepuluh Nopember,Perencanaan Wilayah dan Kota,20,25000000
+108,Institut Teknologi Sepuluh Nopember,Teknik Geomatika,15,25000000
+109,Institut Teknologi Sepuluh Nopember,Teknik Geofisika,15,25000000
+110,Institut Teknologi Sepuluh Nopember,Arsitektur Perkapalan (joint degree),35,30000000
+111,Institut Teknologi Sepuluh Nopember,Teknik Elektro,20,25000000
+112,Institut Teknologi Sepuluh Nopember,Informatika,40,25000000
+113,Institut Teknologi Sepuluh Nopember,Sistem Informasi,30,25000000
+114,Institut Teknologi Sepuluh Nopember,Manajemen Bisnis,30,25000000
+115,Universitas Indonesia,Pendidikan Dokter (double degree),40,51700000
+116,Universitas Indonesia,Pendidikan Dokter Gigi,16,64500000
+117,Universitas Indonesia,Arsitektur,3,25000000
+118,Universitas Indonesia,Teknik Bioproses,4,25000000
+119,Universitas Indonesia,Teknik Elektro,4,25000000
+120,Universitas Indonesia,Teknik Industri,4,25000000
+121,Universitas Indonesia,Teknik Kimia,5,25000000
+122,Universitas Indonesia,Teknik Komputer,4,25000000
+123,Universitas Indonesia,Teknik Lingkungan (double degree),9,25000000
+124,Universitas Indonesia,Teknik Mesin,7,25000000
+125,Universitas Indonesia,Teknik Metalurgi,3,25000000
+126,Universitas Indonesia,Teknik Perkapalan,3,25000000
+127,Universitas Indonesia,Teknik Sipil,3,25000000
+128,Universitas Indonesia,Ilmu Hukum,64,28000000
+129,Universitas Indonesia,Akuntansi,6,29300000
+130,Universitas Indonesia,Bisnis Islam,4,29300000
+131,Universitas Indonesia,Ilmu Ekonomi,7,29300000
+132,Universitas Indonesia,Ilmu Ekonomi Islam,4,29300000
+133,Universitas Indonesia,Manajemen,9,29300000
+134,Universitas Indonesia,Psikologi,20,34000000
+135,Universitas Indonesia,Ilmu Komunikasi (double degree),25,17000000
+136,Universitas Indonesia,Ilmu Komputer (double degree),20,29300000
