@@ -4,33 +4,43 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 # Load data
-df = pd.read_csv("Dataset_Kelompok_16_Mini_Tim_B.csv")
+data = pd.read_csv("Dataset_Kelompok_16_Mini_Tim_B.csv")
 
-# Judul
+# Judul aplikasi
 st.title("Visualisasi Interaktif Data Program IUP")
 
-# Pilihan interaktif untuk jurusan dan universitas
-selected_univ = st.selectbox("Pilih Universitas:", df["Universitas"].unique())
-selected_jurusan = st.selectbox("Pilih Jurusan:", df[df["Universitas"] == selected_univ]["Jurusan/Program Studi"].unique())
+# Sidebar filter
+st.sidebar.header("Filter Data")
+universitas = st.sidebar.selectbox("Pilih Universitas:", sorted(data["Universitas"].unique()))
+jurusan = st.sidebar.selectbox("Pilih Jurusan:", sorted(data[data["Universitas"] == universitas]["Jurusan/Program Studi"].unique()))
 
 # Filter data
-filtered_df = df[(df["Universitas"] == selected_univ) & (df["Jurusan/Program Studi"] == selected_jurusan)]
+filtered_data = data[(data["Universitas"] == universitas) & (data["Jurusan/Program Studi"] == jurusan)]
 
-# Tampilkan hasil
+# Tampilkan data
 st.subheader("Data Terpilih")
-st.write(filtered_df)
+st.dataframe(filtered_data)
 
-# Visualisasi
-if not filtered_df.empty:
-    st.subheader("Visualisasi Perbandingan Daya Tampung dan Biaya UKT")
-    fig, ax = plt.subplots()
-    sns.barplot(data=filtered_df, x="Jurusan/Program Studi", y="Daya Tampung", ax=ax)
-    ax.set_title(f"Daya Tampung untuk {selected_jurusan} di {selected_univ}")
-    st.pyplot(fig)
+# Visualisasi Daya Tampung
+st.subheader("Visualisasi Daya Tampung dan Biaya UKT")
 
-    fig2, ax2 = plt.subplots()
-    sns.barplot(data=filtered_df, x="Jurusan/Program Studi", y="Biaya UKT", ax=ax2)
-    ax2.set_title(f"Biaya UKT untuk {selected_jurusan} di {selected_univ}")
-    st.pyplot(fig2)
-else:
-    st.write("Tidak ada data untuk kombinasi tersebut.")
+col1, col2 = st.columns(2)
+
+with col1:
+    st.markdown(f"**Pie Chart Daya Tampung untuk {jurusan} di {universitas}**")
+    plt.figure(figsize=(4, 4))
+    plt.pie(filtered_data["Daya Tampung"], labels=filtered_data["Jurusan/Program Studi"], autopct='%1.1f%%', colors=sns.color_palette("Set2"))
+    st.pyplot(plt.gcf())
+    plt.clf()
+
+with col2:
+    st.markdown(f"**Bar Chart Biaya UKT untuk {jurusan} di {universitas}**")
+    plt.figure(figsize=(6, 4))
+    sns.barplot(data=filtered_data, x="Jurusan/Program Studi", y="Biaya UKT", palette="coolwarm")
+    plt.xticks(rotation=45)
+    st.pyplot(plt.gcf())
+    plt.clf()
+
+# Footer
+st.markdown("---")
+st.markdown("**Dibuat oleh Erina Sandriani - Magang Vinix Seven Aurum 2025**")
