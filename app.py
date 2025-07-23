@@ -82,4 +82,4 @@ st.dataframe(rekomendasi[['Universitas', 'Jurusan/Program Studi', 'Biaya UKT']])
 
 # Footer
 st.markdown("---")
-st.caption("✨ Dibuat oleh Erina Sandriani – Magang Vinix Seven Aurum 2025")
+st.caption("✨ Dibuat oleh Divisi Data Science Vinix Seven Aurum 2025")
